@@ -48,7 +48,7 @@
       </plugin>
 
       <plugin>
-        <groupId>de.bmarwell.moditect</groupId>
+        <groupId>org.moditect</groupId>
         <artifactId>moditect-maven-plugin</artifactId>
         <version>1.0.0.Final</version>
         <executions>
