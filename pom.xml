@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>de.bmarwell.moditect.java8example</groupId>
+  <artifactId>moditect-java8example</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <snakeyaml.version>1.33</snakeyaml.version>
+  </properties>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>${snakeyaml.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.4.1</version>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>[8,9)</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>de.bmarwell.moditect</groupId>
+        <artifactId>moditect-maven-plugin</artifactId>
+        <version>1.0.0.Final</version>
+        <executions>
+          <execution>
+            <id>add-module-info-to-dependencies</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>add-module-info</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/modules</outputDirectory>
+              <overwriteExistingFiles>true</overwriteExistingFiles>
+
+              <modules>
+                <module>
+                  <artifact>
+                    <groupId>org.yaml</groupId>
+                    <artifactId>snakeyaml</artifactId>
+                    <version>${snakeyaml.version}</version>
+                  </artifact>
+
+                  <moduleInfo>
+                    <name>org.yaml.snakeyaml</name>
+                    <requires>
+                      java.logging;
+                      transitive java.desktop;
+                    </requires>
+                    <exports>
+                      org.yaml.snakeyaml;
+                      org.yaml.snakeyaml.composer;
+                      org.yaml.snakeyaml.constructor;
+                      org.yaml.snakeyaml.emitter;
+                      org.yaml.snakeyaml.env;
+                      org.yaml.snakeyaml.error;
+                      org.yaml.snakeyaml.events;
+                      org.yaml.snakeyaml.extensions.compactnotation;
+                      org.yaml.snakeyaml.external.biz.base64Coder;
+                      org.yaml.snakeyaml.external.com.google.gdata.util.common.base;
+                      org.yaml.snakeyaml.introspector;
+                      org.yaml.snakeyaml.nodes;
+                      org.yaml.snakeyaml.parser;
+                      org.yaml.snakeyaml.reader;
+                      org.yaml.snakeyaml.representer;
+                      org.yaml.snakeyaml.resolver;
+                      org.yaml.snakeyaml.scanner;
+                      org.yaml.snakeyaml.serializer;
+                      org.yaml.snakeyaml.tokens;
+                      org.yaml.snakeyaml.util;
+                    </exports>
+                  </moduleInfo>
+                </module>
+              </modules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
