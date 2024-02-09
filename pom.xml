@@ -70,35 +70,12 @@
                     <version>${snakeyaml.version}</version>
                   </artifact>
 
-                  <moduleInfo>
-                    <name>org.yaml.snakeyaml</name>
-                    <requires>
-                      java.logging;
-                      transitive java.desktop;
-                    </requires>
-                    <exports>
-                      org.yaml.snakeyaml;
-                      org.yaml.snakeyaml.composer;
-                      org.yaml.snakeyaml.constructor;
-                      org.yaml.snakeyaml.emitter;
-                      org.yaml.snakeyaml.env;
-                      org.yaml.snakeyaml.error;
-                      org.yaml.snakeyaml.events;
-                      org.yaml.snakeyaml.extensions.compactnotation;
-                      org.yaml.snakeyaml.external.biz.base64Coder;
-                      org.yaml.snakeyaml.external.com.google.gdata.util.common.base;
-                      org.yaml.snakeyaml.introspector;
-                      org.yaml.snakeyaml.nodes;
-                      org.yaml.snakeyaml.parser;
-                      org.yaml.snakeyaml.reader;
-                      org.yaml.snakeyaml.representer;
-                      org.yaml.snakeyaml.resolver;
-                      org.yaml.snakeyaml.scanner;
-                      org.yaml.snakeyaml.serializer;
-                      org.yaml.snakeyaml.tokens;
-                      org.yaml.snakeyaml.util;
-                    </exports>
-                  </moduleInfo>
+                  <moduleInfoSource>module org.yaml.snakeyaml {
+                    requires java.logging;
+                    requires transitive java.desktop;
+
+                    exports org.yaml.snakeyaml;
+                  }</moduleInfoSource>
                 </module>
               </modules>
             </configuration>
